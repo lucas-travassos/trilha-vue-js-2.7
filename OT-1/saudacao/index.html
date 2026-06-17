@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 1 - Saudação Vue.js</title>
+    <link rel="stylesheet" href="../saudacao/style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="card">
+            <h1>{{ greeting }}</h1>
+            <input v-model="name" type="text" placeholder="Digite seu nome...">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="../saudacao/script.js"></script>
+
+</body>
+
+</html>
