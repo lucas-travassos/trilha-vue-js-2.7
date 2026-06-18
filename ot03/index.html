@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Básico - Vue.js</title>
+</head>
+<body>
+
+    <div id="app">
+        <h1>Formulário Básico</h1>
+
+        <label for="">Nome</label>
+        <input type="text" v-model="nome"><br><br>
+
+        <label for="">Email</label>
+        <input type="text" v-model="email"><br><br>
+
+        <button @click="enviar">Enviar</button>
+
+        <hr>
+
+        <h2>Dados do Formulário</h2>
+        Nome: {{ nome }}<br>
+        Email: {{ email }}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                nome: '',
+                email: ''
+            },
+            methods: {
+                enviar() {
+                    alert('Dados enviados:\nNome: ' + this.nome + '\nEmail: ' + this.email);
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
