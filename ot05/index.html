@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilha Vue JS - diretiva v-bind, atribuindo valor em class e style</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+
+        <!-- Exemplo 1: :class com objeto e :style dinâmico -->
+        <p :class="{ red: isRed, green: isGreen }" :style="{ fontSize: fontSize + 'px' }">
+            Texto estilizado dinamicamente
+        </p>
+
+        <button @click="toggleClass">Alterar Classe</button>
+        <button @click="increaseFontSize">Aumentar Fonte</button>
+
+        <hr>
+
+        <!-- Exemplo 2: botões Bootstrap com v-bind em class e style -->
+        <button class="btn" v-bind:class="btnClassLimpar" v-bind:style="btnStyleLimpar">LIMPAR</button>
+        <button class="btn" :class="btnClassEnviar" :style="btnStyleEnviar">ENVIAR</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Vue JS',
+
+                // Exemplo 1
+                isRed: true,
+                isGreen: false,
+                fontSize: 16,
+
+                // Exemplo 2 - botão Limpar
+                btnClassLimpar: {
+                    'btn-danger': true,
+                    'btn-sm': false
+                },
+                btnStyleLimpar: 'margin: 5px; font-size: 50px',
+
+                // Exemplo 2 - botão Enviar (array com objeto)
+                btnClassEnviar: [
+                    'btn-primary',
+                    { 'btn-lg': true }
+                ],
+                btnStyleEnviar: [
+                    { 'font-size': '30px' },
+                    { 'text-transform': 'lowercase' }
+                ]
+            },
+            methods: {
+                toggleClass() {
+                    this.isRed = !this.isRed;
+                    this.isGreen = !this.isGreen;
+                },
+                increaseFontSize() {
+                    this.fontSize += 2;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
