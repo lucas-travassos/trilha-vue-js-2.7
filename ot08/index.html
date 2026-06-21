@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Vue JS - computed e watch</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Exemplo 1: computed -->
+        <h2>Computed - Mensagem invertida</h2>
+        <p>{{ message }}</p>
+        <p>{{ reversedMessage }}</p>
+        <input v-model="message">
+
+        <hr>
+
+        <!-- Exemplo 2: watch -->
+        <h2>Watch - Observando mudanças</h2>
+        <p>Mensagem atual: {{ message }}</p>
+        <p>Status: {{ status }}</p>
+
+        <hr>
+
+        <!-- Exemplo 3: computed + watch combinados -->
+        <h2>Computed + Watch combinados</h2>
+        <p>{{ fullName }}</p>
+        <input v-model="firstName" placeholder="First Name">
+        <input v-model="lastName" placeholder="Last Name">
+        <p>{{ apiResponse }}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!',
+                status: 'Esperando...',
+                firstName: 'John',
+                lastName: 'Doe',
+                apiResponse: ''
+            },
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('');
+                },
+                fullName() {
+                    return `${this.firstName} ${this.lastName}`;
+                }
+            },
+            watch: {
+                message(newValue, oldValue) {
+                    this.status = `Mensagem mudou de '${oldValue}' para '${newValue}'`;
+                },
+                fullName(newName) {
+                    this.fakeApiCall(newName);
+                }
+            },
+            methods: {
+                fakeApiCall(name) {
+                    this.apiResponse = `API chamada com o nome: ${name}`;
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
