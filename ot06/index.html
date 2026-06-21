@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Vue JS - diretiva v-on, manipulando eventos</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+
+        <!-- Exemplo 1: Botão contador -->
+        <h2>Exemplo 1 - Contador</h2>
+        <button @click="incrementarContador">Clique aqui {{ contador }} vezes</button>
+
+        <hr>
+
+        <!-- Exemplo 2: Formulário com .prevent -->
+        <h2>Exemplo 2 - Formulário com prevent</h2>
+        <form @submit.prevent="enviarFormulario">
+            <input type="text" v-model="nome">
+            <button type="submit">Enviar</button>
+        </form>
+
+        <hr>
+
+        <!-- Exemplo 3: Botão Bootstrap com .prevent.stop -->
+        <h2>Exemplo 3 - Bootstrap com prevent e stop</h2>
+        <form action="https://www.google.com">
+            <button
+                type="submit"
+                class="btn btn-primary"
+                v-on:click.prevent.stop="enviar"
+            >Enviar</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Vue JS',
+                contador: 0,
+                nome: ''
+            },
+            methods: {
+                incrementarContador() {
+                    this.contador++;
+                },
+                enviarFormulario() {
+                    alert('Formulário enviado com o nome: ' + this.nome);
+                },
+                enviar() {
+                    alert('Enviando!');
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
